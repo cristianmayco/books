@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="get" action="{% url 'find' %}">
+    <input type="text" id="search" name="query" value="{{request.GET.query}}" placeholder="Search">
+    <input type="submit" value="Enviar">
+</form>
+</body>
+</html>
