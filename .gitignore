@@ -3,4 +3,4 @@
 .idea/*
 db.sqlite3
 app/__pycache__/*
-core/__pycache/*
+core/__pycache__/*
