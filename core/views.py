@@ -31,3 +31,5 @@ class DetailView(TemplateView):
         context['book'] = requests.get(url).json()
 
         return context
+
+

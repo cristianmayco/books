@@ -1,3 +1,4 @@
+{% load testes %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +26,11 @@
 
 <div class="container">
     <div class="row mb-2 mt-4">
-        <div class="col-mx-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="col">
+            <div class="card flex-md-row mb-4 border border-primary">
                 <img class="card-img-left flex-auto d-none d-md-block" src="{{book.volumeInfo.imageLinks.thumbnail}}">
                 <div class="card-body d-flex flex-column align-items-start">
-                    <strong class="d-inline-block mb-2 text-primary">{{book.volumeInfo.authors}}</strong>
+                    <strong class="d-inline-block mb-2 text-primary">{{book.volumeInfo.authors|list_display}}</strong>
                     <h3 class="mb-0">{{book.volumeInfo.title}}</h3>
                     <div class="mb-1 text-muted">{{book.volumeInfo.publishedDate}}</div>
                     <p class="card-text mb-auto">{{book.volumeInfo.subtitle}}.</p>
@@ -37,7 +38,11 @@
                 </div>
             </div>
         </div>
-
+        <div class="mt-4">
+            <h2><strong>Description</strong></h2>
+            <h5> {{book.volumeInfo.description}}</h5>
+            <span>{{book.volumeInfo.language|title}} {{book.volumeInfo.pageCount}}pg</span>
+        </div>
     </div>
 </div>
 </body>
