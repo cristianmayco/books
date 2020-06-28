@@ -2,13 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Google Books API Example</title>
 </head>
 <body>
 
-<form method="get" action="{% url 'find' %}">
-    <input type="text" id="search" name="query" value="{{request.GET.query}}" placeholder="Search">
-    <input type="submit" value="Enviar">
-</form>
+<nav class="navbar  navbar-expand-sm navbar-light bg-light rounded">
+    <a class="navbar-brand" href="{% url 'index' %}">Books</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form method="GET" action="" id="searchform" class="  form-inline my-2 my-lg-0">
+            <input type="search" class="searchfield form-control-lg btn-block" id="searchbox"
+                   name="q" type="text"
+                   value="{{ request.GET.q }}"
+                   placeholder="Example... Dom Casmurro"/>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card-columns">
+        {% for item in books.items %}
+        <div class="card bg-primary  text-white text-center shadow-sm">
+            <img class="card-img" src="{{item.volumeInfo.imageLinks.thumbnail}}"
+                 style="width: 128px" alt="Card image cap">
+            <div class="card-body border-top border-light">
+                <h5>{{item.volumeInfo.title}}</h5>
+                <h6> {{ item.volumeInfo.authors }}</h6>
+
+                <h6> {{item.volumeInfo.categories}}</h6>
+                <h6>Language: {{item.volumeInfo.language}}</h6>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
