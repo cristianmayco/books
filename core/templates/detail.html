@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Google Books API Example</title>
+    <title>Google Books API Example| {{book.volumeInfo.title}}</title>
 </head>
 <body>
 
@@ -20,32 +20,24 @@
                 <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
-        <form method="GET" action="" id="searchform" class="  form-inline my-2 my-lg-0">
-            <input type="search" class="searchfield form-control-lg btn-block" id="searchbox"
-                   name="q" type="text"
-                   value="{{ request.GET.q }}"
-                   placeholder="Example... Dom Casmurro"/>
-        </form>
     </div>
 </nav>
 
 <div class="container">
-    <div class="card-columns">
-        {% for item in books.items %}
-        <div class="card bg-primary  text-white text-center shadow-sm">
-            <a class="nav-link" href="{% url 'detail' item.id %}">
-            <img class="card-img" src="{{item.volumeInfo.imageLinks.thumbnail}}"
-                 style="width: 128px" alt="Card image cap">
-            </a>
-            <div class="card-body border-top border-light">
-                <h5>{{item.volumeInfo.title}}</h5>
-                <h6> {{ item.volumeInfo.authors }}</h6>
+    <div class="row mb-2 mt-4">
+        <div class="col-mx-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <img class="card-img-left flex-auto d-none d-md-block" src="{{book.volumeInfo.imageLinks.thumbnail}}">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">{{book.volumeInfo.authors}}</strong>
+                    <h3 class="mb-0">{{book.volumeInfo.title}}</h3>
+                    <div class="mb-1 text-muted">{{book.volumeInfo.publishedDate}}</div>
+                    <p class="card-text mb-auto">{{book.volumeInfo.subtitle}}.</p>
 
-                <h6> {{item.volumeInfo.categories}}</h6>
-                <h6>Language: {{item.volumeInfo.language}}</h6>
+                </div>
             </div>
         </div>
-        {% endfor %}
+
     </div>
 </div>
 </body>
